@@ -95,6 +95,9 @@ export default {
       flex-direction: column;
       justify-content: center;
       align-items: center;
+    .home-nav-h {
+      margin: 0;
+    }
     > i {
       width: 24px;
       height: 24px;
