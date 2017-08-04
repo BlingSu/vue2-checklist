@@ -13,6 +13,11 @@ export default new Router({
       path: '/home',
       name: 'home',
       component: resolve => require(['../components/Home.vue'], resolve)
+    },
+    {
+      path: '/category',
+      name: 'category',
+      component: resolve => require(['../components/Category'], resolve)
     }
   ]
 })

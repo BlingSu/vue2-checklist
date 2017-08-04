@@ -16,13 +16,32 @@
       </div>
     </nav>
     <nav class="home-nav">
-      <router-link></router-link>
+      <router-link
+        class="home-nav-icon"
+        v-for="(item, index) in types"
+        :to="{ path: 'category', query: { type: item.type} }"
+        :key="item.type">
+        <i class="icon"></i>
+        <h4 class="home-nav-h">{{item.content}}</h4>
+      </router-link>
     </nav>
   </div>
 </template>
 
 <script>
-
+export default {
+  data () {
+    return {
+      types: [
+        { type: 1, content: '玄幻' },
+        { type: 2, content: '修真' },
+        { type: 3, content: '都市' },
+        { type: 4, content: '历史' },
+        { type: 5, content: '游戏' }
+      ]
+    }
+  }
+}
 </script>
 
 <style lang="less" type="text/less">
@@ -57,6 +76,54 @@
     height: 160px;
     img {
       width: 100%;
+    }
+  }
+}
+
+.home-nav {
+  display: flex;
+  margin: 10px 0;
+  padding: 10px 0;
+  background-color: #fff;
+  a {
+    color: #333;
+    text-decoration: none;
+  }
+  .home-nav-icon {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    > i {
+      width: 24px;
+      height: 24px;
+      background-image: url('../assets/images/sprite.0.50.png')
+    }
+    &:nth-of-type(1) {
+        i {
+          background-position: -63px -28px;
+        }
+      }
+    &:nth-of-type(2) {
+      i {
+        background-position: 0 0;
+      }
+    }
+    &:nth-of-type(3) {
+      i {
+        background-position: 0 -30px;
+      }
+    }
+    &:nth-of-type(4) {
+      i {
+        background-position: 0 -60px;
+      }
+    }
+    &:nth-of-type(5) {
+      i {
+        background-position: -30px -30px;
+      }
     }
   }
 }
