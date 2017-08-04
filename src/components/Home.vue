@@ -25,11 +25,18 @@
         <h4 class="home-nav-h">{{item.content}}</h4>
       </router-link>
     </nav>
+
+    <Loading></Loading>
   </div>
 </template>
 
 <script>
+import Loading from './Loading/Loading.vue'
+
 export default {
+  components: {
+    Loading
+  },
   data () {
     return {
       types: [
@@ -38,8 +45,13 @@ export default {
         { type: 3, content: '都市' },
         { type: 4, content: '历史' },
         { type: 5, content: '游戏' }
-      ]
+      ],
+      loading: false
     }
+  },
+
+  created () {
+    this.Loading = true
   }
 }
 </script>
