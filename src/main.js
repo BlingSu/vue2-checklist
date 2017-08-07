@@ -5,6 +5,7 @@ import axios from 'axios'
 
 import MintUI from 'mint-ui'
 import 'mint-ui/lib/style.css'
+import Common from '@/assets/js/utils.js'
 
 Vue.config.productionTip = false
 Vue.prototype.$http = axios
@@ -12,6 +13,7 @@ let baseURL = 'http://192.168.1.198'
 axios.defaults.baseURL = baseURL
 
 Vue.use(MintUI)
+Vue.use(Common)
 
 /* eslint-disable no-new */
 new Vue({

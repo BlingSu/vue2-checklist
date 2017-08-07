@@ -32,10 +32,9 @@ export default {
     return {}
   },
   methods: {
-
-  },
-  mounted () {
-    console.log(this.booklist, '?')
+    bookDetailId (id) {
+      console.log(id, '?')
+    }
   }
 }
 </script>
