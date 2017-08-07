@@ -25,13 +25,13 @@
         <h4 class="home-nav-h">{{item.content}}</h4>
       </router-link>
     </nav>
-    <div>
+    <div v-if="!loading">
+      <Recommend :booklist="booklist | hot" title="热门小说"></Recommend>
+     <!--  <Recommend></Recommend>
       <Recommend></Recommend>
       <Recommend></Recommend>
       <Recommend></Recommend>
-      <Recommend></Recommend>
-      <Recommend></Recommend>
-      <Recommend></Recommend>
+      <Recommend></Recommend> -->
     </div>
 
     <Loading v-show="loading"></Loading>
@@ -41,11 +41,13 @@
 <script>
 import Loading from './Loading/Loading.vue'
 import Recommend from './Common/Recommend.vue'
+import BookList from './Common/BookList.vue'
 
 export default {
   components: {
     Loading,
-    Recommend
+    Recommend,
+    BookList
   },
   data () {
     return {
@@ -56,12 +58,36 @@ export default {
         { type: 4, content: '历史' },
         { type: 5, content: '游戏' }
       ],
-      loading: false
+      loading: false,
+      booklist: []
     }
   },
-
+  methods: {
+    getData () {
+      this.loading = true
+      this.$http.get('book.json')
+      .then((resp) => {
+        this.booklist = resp.data
+        this.loading = false
+      })
+    }
+  },
+  filters: {
+    hot (value) {
+      if (!value) return ''
+      let arr = []
+      value.forEach((item, index) => {
+        if (index < 20) {
+          if (index % 2 === 1) {
+            arr.push(item)
+          }
+        }
+      })
+      return arr
+    }
+  },
   created () {
-    this.Loading = true
+    this.getData()
   }
 }
 </script>

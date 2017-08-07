@@ -1,4 +1,5 @@
 <template>
-  <div>
+  <div class="recommend">
+
   </div>
 </template>
