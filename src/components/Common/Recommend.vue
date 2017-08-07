@@ -37,6 +37,46 @@ export default {
 
 <style type="text/less" lang="less">
 .recommend {
-  padding: 15px 0;
-}
+    padding: 15px 0;
+    margin-bottom: 15px;
+    background-color: #fff;
+    .title {
+      margin-left: 15px;
+      margin-bottom: 10px;
+      border-left: 2px solid #ed424b;
+      text-indent: 5px;
+      font-size: 16px;
+      line-height: 16px;
+    }
+    .list {
+      .list-ul {
+        position: relative;
+        overflow-x: auto;
+        overflow-y: hidden;
+        white-space: nowrap;
+        text-indent: 7px;
+        padding: 0;
+        .list-li {
+          display: inline-block;
+          margin-right: 8px;
+          width: 100px;
+          img {
+            width: 100%;
+            height:125px;
+          }
+          a {
+            text-decoration: none;
+          }
+          p {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            color: #333;
+            margin: 0;
+            font-size:14px;
+          }
+        }
+      }
+    }
+  }
 </style>
