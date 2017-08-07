@@ -60,15 +60,94 @@ export default {
 <style type="text/less" lang="less">
 .book-list {
   margin-top: 15px;
-  padding: 15px 0;
+  padding: 15px;
   background-color: #fff;
   .title {
-    margin-left: 15px;
+    margin-left: 0px;
     margin-bottom: 10px;
     border-left: 2px solid #ed424b;
-    font-size: 16px;
     text-indent: 5px;
+    font-size: 16px;
     line-height: 16px;
+  }
+  ul {
+    padding: 0;
+  }
+  ul li {
+    display: flex;
+    padding-bottom: 10px;
+    margin-bottom: 14px;
+    border-bottom: 1px solid #ddd;
+    &:last-of-type {
+      border-bottom: none;
+    }
+    a {
+      display: flex;
+      text-decoration: none;
+    }
+    .book-image {
+      width: 80px;
+      img {
+        width: 100%;
+      }
+    }
+    .book-detail {
+      position: relative;
+      flex: 1;
+      padding: 0;
+      margin-left: 20px;
+      h3 {
+        font-size: 18px;
+        margin-bottom: 10px;
+        margin: 0;
+        color: #333;
+      }
+      p {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        line-clamp: 2;
+        font-size: 14px;
+        color: #969ba3;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        margin: 0;
+      }
+      .author {
+        position: absolute;
+        left: 0px;
+        bottom: 5px;
+        color: #969ba3;
+        font-size: 13px;
+        i {
+          position: relative;
+          bottom: -3px;
+          display: inline-block;
+          width: 16px;
+          height: 16px;
+          background: url("../../assets/images/man.png") no-repeat;
+        }
+      }
+      .category-r {
+        position: absolute;
+        right: 0;
+        bottom: 5px;
+        float: right;
+        color: #969ba3;
+        font-size: 10px;
+        span {
+          border: 1px solid #ccc;
+          border-radius: 2px;
+          padding: 0 2px;
+        }
+        span:nth-child(2) {
+          color: #ed424b;
+        }
+        span:nth-child(3) {
+          color: #4284ed;
+        }
+      }
+    }
   }
 }
 </style>
