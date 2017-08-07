@@ -29,9 +29,9 @@
       <Recommend :booklist="booklist | hot" title="热门小说"></Recommend>
       <Recommend :booklist="booklist | top" title="排行榜"></Recommend>
       <Recommend :booklist="booklist | free" title="限时免费"></Recommend>
-     <!--  <Recommend></Recommend>
-      <Recommend></Recommend>
-      <Recommend></Recommend> -->
+      <Recommend :datalist="booklist | prerelease" title="新书抢鲜"></Recommend>
+      <Recommend :datalist="booklist | end" title="畅销完本"></Recommend>
+      <Recommend :datalist="booklist | love" title="猜你喜欢"></Recommend>
     </div>
 
     <Loading v-show="loading"></Loading>
@@ -102,9 +102,39 @@ export default {
       let arr = []
       value.forEach((item, index) => {
         if (index < 20) {
-          if (index % 3 === 1) {
+          if (index % 3 === 2) {
             arr.push(item)
           }
+        }
+      })
+      return arr
+    },
+    prerelease (value) {
+      if (!value) return ''
+      let arr = []
+      value.forEach((item, index) => {
+        if (index % 3 === 1) {
+          arr.push(item)
+        }
+      })
+      return arr
+    },
+    end (value) {
+      if (!value) return ''
+      let arr = []
+      value.forEach((item, index) => {
+        if (item.serialize === '完结') {
+          arr.push(item)
+        }
+      })
+      return arr
+    },
+    love (value) {
+      if (!value) return ''
+      let arr = []
+      value.forEach((item, index) => {
+        if (index % 4 === 2) {
+          arr.push(item)
         }
       })
       return arr

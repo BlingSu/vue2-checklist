@@ -23,7 +23,7 @@ export default {
   props: ['booklist', 'title'],
   methods: {
     bookDetailId (id) {
-      console.log(id)
+      // console.log(id)
     },
     loadImage (e) {
       this.common.defaultImage(e)

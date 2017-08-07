@@ -26,14 +26,14 @@
 
 <script>
 export default {
-  props: ['booklist'],
+  props: ['booklist', 'title'],
 
   data () {
     return {}
   },
   methods: {
     bookDetailId (id) {
-      console.log(id, '?')
+      // console.log(id, '?')
     }
   }
 }
