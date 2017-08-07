@@ -25,17 +25,27 @@
         <h4 class="home-nav-h">{{item.content}}</h4>
       </router-link>
     </nav>
+    <div>
+      <Recommend></Recommend>
+      <Recommend></Recommend>
+      <Recommend></Recommend>
+      <Recommend></Recommend>
+      <Recommend></Recommend>
+      <Recommend></Recommend>
+    </div>
 
-    <Loading></Loading>
+    <Loading v-show="loading"></Loading>
   </div>
 </template>
 
 <script>
 import Loading from './Loading/Loading.vue'
+import Recommend from './Common/Recommend.vue'
 
 export default {
   components: {
-    Loading
+    Loading,
+    Recommend
   },
   data () {
     return {
