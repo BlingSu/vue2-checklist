@@ -27,9 +27,9 @@
     </nav>
     <div v-if="!loading">
       <Recommend :booklist="booklist | hot" title="热门小说"></Recommend>
+      <Recommend :booklist="booklist | top" title="排行榜"></Recommend>
+      <Recommend :booklist="booklist | free" title="限时免费"></Recommend>
      <!--  <Recommend></Recommend>
-      <Recommend></Recommend>
-      <Recommend></Recommend>
       <Recommend></Recommend>
       <Recommend></Recommend> -->
     </div>
@@ -79,6 +79,30 @@ export default {
       value.forEach((item, index) => {
         if (index < 20) {
           if (index % 2 === 1) {
+            arr.push(item)
+          }
+        }
+      })
+      return arr
+    },
+    top (value) {
+      if (!value) return ''
+      let arr = []
+      value.forEach((item, index) => {
+        if (index < 20) {
+          if (index % 2 === 0) {
+            arr.push(item)
+          }
+        }
+      })
+      return arr
+    },
+    free (value) {
+      if (!value) return ''
+      let arr = []
+      value.forEach((item, index) => {
+        if (index < 20) {
+          if (index % 3 === 1) {
             arr.push(item)
           }
         }
