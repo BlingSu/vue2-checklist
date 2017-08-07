@@ -30,8 +30,8 @@
       <Recommend :booklist="booklist | top" title="排行榜"></Recommend>
       <Recommend :booklist="booklist | free" title="限时免费"></Recommend>
       <book-list :datalist="booklist | prerelease" title="新书抢鲜"></book-list>
-      <!-- <Recommend :datalist="booklist | end" title="畅销完本"></Recommend> -->
-      <!-- <Recommend :datalist="booklist | love" title="猜你喜欢"></Recommend> -->
+      <book-list :datalist="booklist | end" title="畅销完本"></book-list>
+      <book-list :datalist="booklist | love" title="猜你喜欢"></book-list>
     </div>
 
     <Loading v-show="loading"></Loading>
@@ -123,7 +123,7 @@ export default {
       if (!value) return ''
       let arr = []
       value.forEach((item, index) => {
-        if (item.serialize === '完结') {
+        if (item.serialize === '完本') {
           arr.push(item)
         }
       })

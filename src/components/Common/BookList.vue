@@ -14,7 +14,7 @@
               <i></i>
               <span>{{ item.author }}</span>
             </div>
-            <div class="category-r">
+            <div class="category-type">
               <span>{{ item.type }}</span><span>{{ item.serialize }}</span><span>{{ item.wordcount }}万字</span>
             </div>
           </div>
@@ -128,7 +128,7 @@ export default {
           background: url("../../assets/images/man.png") no-repeat;
         }
       }
-      .category-r {
+      .category-type {
         position: absolute;
         right: 0;
         bottom: 5px;
