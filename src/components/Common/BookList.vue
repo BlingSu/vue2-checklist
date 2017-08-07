@@ -5,7 +5,7 @@
       <li v-for="item in datalist">
         <router-link :to="{ path: '/bookdetail/' + item.id }" @click.native="bookDetailId(item.id)">
           <div class="book-image">
-            <img src="item.images">
+            <img :src="item.images">
           </div>
           <div class="book-detail">
             <h3>{{ item.name }}</h3>
@@ -26,7 +26,7 @@
 
 <script>
 export default {
-  props: ['booklist', 'title'],
+  props: ['datalist', 'title'],
 
   data () {
     return {}
@@ -35,6 +35,40 @@ export default {
     bookDetailId (id) {
       // console.log(id, '?')
     }
+  },
+  filters: {
+    type (value) {
+      switch (value) {
+        case 1:
+          return '测试'
+        case 2:
+          return '修真'
+        case 3:
+          return '都市'
+        case 4:
+          return '历史'
+        case 5:
+          return '网游'
+        default:
+          return '类型'
+      }
+    }
   }
 }
 </script>
+
+<style type="text/less" lang="less">
+.book-list {
+  margin-top: 15px;
+  padding: 15px 0;
+  background-color: #fff;
+  .title {
+    margin-left: 15px;
+    margin-bottom: 10px;
+    border-left: 2px solid #ed424b;
+    font-size: 16px;
+    text-indent: 5px;
+    line-height: 16px;
+  }
+}
+</style>
