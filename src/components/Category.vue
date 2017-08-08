@@ -21,7 +21,7 @@
                 <span>{{item.author}}</span>
               </div>
               <div class="category-message">
-                <span>{{}}</span><span>{{item.serialize}}</span><span>{{item.wordcount}}万字</span>
+                <span>{{1}}</span><span>{{item.serialize}}</span><span>{{item.wordcount}}万字</span>
               </div>
             </div>
           </router-link>
@@ -65,16 +65,7 @@ export default {
   },
   methods: {
     getCategoryList (type) {
-      console.log(type, '?')
       this.loading = true
-      this.$http.get('type', {
-        params: {
-          type: type
-        }
-      })
-      .then((resp) => {
-        console.log(resp, '??')
-      })
     }
   },
   created () {
