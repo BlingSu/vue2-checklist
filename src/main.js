@@ -9,7 +9,7 @@ import Common from '@/assets/js/utils.js'
 
 Vue.config.productionTip = false
 Vue.prototype.$http = axios
-let baseURL = 'http://192.168.1.198'
+let baseURL = 'http://192.168.1.214'
 axios.defaults.baseURL = baseURL
 
 Vue.use(MintUI)
