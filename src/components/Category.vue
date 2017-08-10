@@ -21,7 +21,7 @@
                 <span>{{item.author}}</span>
               </div>
               <div class="category-message">
-                <span>{{1}}</span><span>{{item.serialize}}</span><span>{{item.wordcount}}万字</span>
+                <span>{{bookCategoryType}}</span><span>{{item.serialize}}</span><span>{{item.wordcount}}万字</span>
               </div>
             </div>
           </router-link>
@@ -34,7 +34,7 @@
 
 <script>
 import Loading from './Loading/Loading.vue'
-
+import {mapState} from 'vuex'
 export default {
   components: {
     Loading
@@ -46,6 +46,7 @@ export default {
     }
   },
   computed: {
+    ...mapState(['bookCategoryType']),
     title () {
       switch (this.$route.query.type) {
         case 1:
@@ -75,6 +76,9 @@ export default {
         this.loading = false
         this.categoryList = resp.data
       })
+    },
+    bookDetailId (id) {
+      this.$store.dispatch('chooseBook', id)
     }
   },
   created () {

@@ -6,7 +6,9 @@ import actions from './actions'
 
 Vue.use(Vuex)
 
-const state = {}
+const state = {
+  curBookDetailId: 1
+}
 
 export default new Vuex.Store({
   state,

@@ -1,5 +1,7 @@
-// import * as types from './mutations-types'
+import * as types from './mutations-types'
 
-// export default {
-
-// }
+export default {
+  chooseBook ({commit}, id) {
+    commit(types.CHOOSE_BOOK, id)
+  }
+}
