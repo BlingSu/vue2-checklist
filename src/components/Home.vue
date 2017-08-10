@@ -2,7 +2,7 @@
   <div class="container">
     <nav class="nav-header">
       <header>
-        <a href="/" class="title">测试的网说</a>
+        <a href="/" class="title">测试2的网说</a>
         <a href="/" class="avatar"></a>
       </header>
       <div class="swpie">
