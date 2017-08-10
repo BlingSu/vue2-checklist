@@ -65,7 +65,7 @@ export default {
   methods: {
     getData () {
       this.loading = true
-      this.$http.get('book.json')
+      this.$http.get(this.common.api + '/booklist')
       .then((resp) => {
         this.booklist = resp.data
         this.loading = false

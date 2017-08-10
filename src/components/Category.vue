@@ -74,7 +74,6 @@ export default {
       .then((resp) => {
         this.loading = false
         this.categoryList = resp.data
-        console.log(resp.data)
       })
     }
   },
