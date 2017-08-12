@@ -66,6 +66,7 @@ export default {
     getData () {
       this.loading = true
       this.$http.get(this.common.api + '/booklist')
+      // this.$http.get('http://localhost:3000/booklist')
       .then((resp) => {
         this.booklist = resp.data
         this.loading = false
