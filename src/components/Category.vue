@@ -9,7 +9,7 @@
     <div class="container" v-if="!loading">
       <ul>
         <li v-for="item in categoryList">
-          <router-link :to="{ path: '/bookdetails/' + item.id }" @click.native="bookDetailId(item.id)">
+          <router-link :to="{ path: '/bookdetail/' + item.id }" @click.native="bookDetailId(item.id)">
             <div class="category-image">
               <img :src="item.images">
             </div>

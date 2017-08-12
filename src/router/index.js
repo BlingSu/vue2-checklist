@@ -18,6 +18,11 @@ export default new Router({
       path: '/category',
       name: 'category',
       component: resolve => require(['../components/Category'], resolve)
+    },
+    {
+      path: '/bookdetail/:id',
+      name: 'bookdetail',
+      component: resolve => require(['../components/BookDetail'], resolve)
     }
   ]
 })
