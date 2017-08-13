@@ -1,6 +1,6 @@
 <template>
   <div class="book-detail">
-    <Loading v-show="loading"></Loading>
+    <Loading v-show="detailLoading"></Loading>
     <div class="detail-content">
       <div class="detail-linear">
         测试
@@ -18,7 +18,7 @@ export default {
   },
   data () {
     return {
-      loading: false
+      detailLoading: false
     }
   }
 }
