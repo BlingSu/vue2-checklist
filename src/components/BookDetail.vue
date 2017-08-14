@@ -3,7 +3,38 @@
     <Loading v-show="detailLoading"></Loading>
     <div class="detail-content">
       <div class="detail-linear">
-        测试
+        <header>
+          <a><i></i></a>
+          <h2></h2>
+          <a><i></i></a>
+        </header>
+        <div class="detail-header">
+          <div>
+            <img>
+          </div>
+          <div>
+            <h3>
+              <p></p>
+              <p></p>
+              <p></p>
+            </h3>
+          </div>
+          <div>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </div>
+        <div class="read-btn">
+          <button></button>
+          <button></button>
+        </div>
+        <div class="detail-intro"></div>
+        <div class="detail-tag"></div>
+        <div class="detail-love"></div>
       </div>
     </div>
   </div>
