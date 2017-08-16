@@ -34,7 +34,7 @@
         </div>
         <div class="detail-intro"></div>
         <div class="detail-tag"></div>
-        <div class="detail-love"></div>
+        <div class="detail-favorite"></div>
       </div>
     </div>
   </div>

@@ -10,7 +10,6 @@ import Common from '@/assets/js/utils.js'
 
 Vue.config.productionTip = false
 Vue.prototype.$http = axios
-// axios.defaults.baseURL = baseURL
 
 Vue.use(MintUI)
 Vue.use(Common)
