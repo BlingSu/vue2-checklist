@@ -13,4 +13,4 @@ npm run dev
 
 npm run build
 
-注： 需配置本地api环境(nginx配置或者nodejs搭后台模拟数据)
+注： 配置接口
