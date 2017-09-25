@@ -1,6 +1,6 @@
 <template>
   <div class="rate-score">
-    <span class="star-item" :class="item" v-for="(item,index) in itemClass">{{ score }</span>
+    <span class="star-item" :class="item" v-for="(item,index) in itemClasses"></span>{{score}}
   </div>
 </template>
 
@@ -11,12 +11,15 @@ export default {
   },
   props: ['score'],
   computed: {
-    itemClass () {
+    itemClasses () {
       let result = []
       let score = Math.floor(this.score * 2) / 2
       let hasDecimal = score % 1 !== 0
-      let interger = Math.floor(score)
-      for (let i = 0; i < interger; i++) {
+      let integer = Math.floor(score)
+      // console.log(score, 'score')
+      // console.log(hasDecimal, 'hasDecimal')
+      // console.log(integer, 'interger')
+      for (var i = 0; i < integer; i++) {
         result.push('on')
       }
       if (hasDecimal) {

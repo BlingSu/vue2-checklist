@@ -11,6 +11,8 @@ import Common from '@/assets/js/utils.js'
 Vue.config.productionTip = false
 Vue.prototype.$http = axios
 
+import './assets/css/reset.css'
+
 Vue.use(MintUI)
 Vue.use(Common)
 

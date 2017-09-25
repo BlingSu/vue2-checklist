@@ -7,7 +7,8 @@ import actions from './actions'
 Vue.use(Vuex)
 
 const state = {
-  curBookDetailId: 1
+  curBookDetailId: 1,
+  bar: false
 }
 
 export default new Vuex.Store({
