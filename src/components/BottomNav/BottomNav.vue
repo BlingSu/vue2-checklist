@@ -16,7 +16,7 @@
         </div>
       </div>
     </div>
-    <div class="item" id="night-button" @click="swithNight">
+    <div class="item" id="night-button" @click="switchNight">
       <div class="item-warp" style="display:none" >
         <div class="icon-day"></div>
         <div class="icon-text">
@@ -51,8 +51,8 @@ export default {
       this.font_icon_class = !this.font_icon_class
       this.$store.dispatch('showFontPanel')
     },
-    swithNight () {
-      this.$store.dispatch('swithNight')
+    switchNight () {
+      this.$store.dispatch('switchNight')
     }
   },
   computed: {
