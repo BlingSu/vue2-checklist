@@ -1,10 +1,10 @@
 <template>
   <div class="reader">
     <top-nav></top-nav>
-    <div class="read-container">
-      <h4></h4>
+    <div class="read-container" :bg="bg_color" :night="bg_night" ref="fz_size">
+      <h4>{{ title }}</h4>
       <div class="chapterContent" v-show="!loading">
-        <p v-for="(item, index) in content" :key="index">{{ item }</p>
+        <p v-for="(item,index) in content" :key="index">{{ item }}</p>
       </div>
       <div class="btn-bar" v-show="!loading">
         <ul class="btn-tab">
@@ -16,11 +16,11 @@
     <div class="page-up" @click="pageUp()"></div>
     <div class="click-mask" @click="clickBar"></div>
     <div class="page-down" @click="pageDown()"></div>
-    <div class="top-nav-panel-bk font-container"></div>
+    <div class="top-nav-panel-bk font-container" v-show="font_panel"></div>
     <font-nav></font-nav>
     <bottom-nav></bottom-nav>
-    <cover></cover>
-    <list-panel></list-panel>
+    <cover :class="{hide:!list_panel}"></cover>
+    <list-panel :class="{show: list_panel}" :bookId="$route.params.id"></list-panel>
     <loading v-show="loading"></loading>
   </div>
 </template>
@@ -32,13 +32,19 @@ import FontNav from './FontNav/FontNav'
 import BottomNav from './BottomNav/BottomNav'
 import Cover from './Cover'
 import ListPanel from './ListPanel/ListPanel'
-// import localEvent from '../store/local'
+import {mapState} from 'vuex'
+import localEvent from '../store/local'
 
 export default {
   data () {
     return {
       loading: false,
-      content: []
+      content: [],
+      booksReadInfo: {},
+      showList: false,
+      bar: false,
+      title: '',
+      timer: null
     }
   },
   components: {
@@ -49,15 +55,139 @@ export default {
     Cover,
     ListPanel
   },
+  created () {
+    console.log(this.$store.s)
+    //  本地是否存文字大小
+    if (localEvent.StorageGetter('fz_size')) {
+      this.$store.state.fz_size = localEvent.StorageGetter('fz_size')
+    }
+    // 本地是否存主题色
+    if (localEvent.StorageGetter('bg_color')) {
+      this.$store.state.bg_color = localEvent.StorageGetter('bg_color')
+    }
+    //  加载回去所有进度
+
+    const localBookReaderInfo = localEvent.StorageGetter('bookreaderinfo')
+    let id = this.$route.params.id
+
+    //   现在的书有读过，且有进度
+    if (localBookReaderInfo && localBookReaderInfo[id]) {
+      this.booksReadInfo = localEvent.StorageGetter('bookreaderinfo')
+      this.getData(id, this.booksReadInfo[id].chapter)
+      this.$store.dispatch('curChapter', this.booksReadInfo[id].chapter)
+    } else {
+      //  没读过 但是local 保存的其他书籍进度
+      if (localBookReaderInfo) {
+        this.booksReadInfo = localBookReaderInfo
+        this.getData(id, 1)
+        this.$store.dispatch('curChapter', 1)
+      } else {
+        //  第一次读
+        this.booksReadInfo[id] = {
+          book: id,
+          chapter: 1
+        }
+        this.getData(id, 1)
+        this.$store.dispatch('curChapter', 1)
+      }
+    }
+  },
+  mounted () {
+    this.$refs.fz_size.style.fontSize = this.fz_size + 'px'
+  },
+  computed: {
+    ...mapState(['font_panel', 'bg_color', 'fz_size', 'bg_night', 'curChapter', 'windowHeight', 'list_panel'])
+  },
+  watch: {
+    // fz_size的值更改背景色
+    fz_size (newVal, oldVal) {
+      this.$refs.fz_size.style.fontSize = newVal + 'px'
+      localEvent.StorageSetter('fz_size', newVal)
+    },
+    curChapter (newVal, oldVal) {
+      // 章节变化，保存到本地并获取数据
+      localEvent.StorageSetter('cur_chapter', newVal)
+      this.saveBooksInfo()
+      this.getData(this.$route.params.id, newVal)
+    }
+  },
   methods: {
-    prevChapter () {},
-    nextChapter () {},
+    saveBooksInfo () {
+      // 用local 保存阅读进度
+      let id = this.$route.params.id
+      this.booksReadInfo[id] = {
+        book: id,
+        chapter: this.curChapter
+      }
+      localEvent.StorageSetter('bookreaderinfo', this.booksReadInfo)
+    },
+    page (e) {
+      if (e.keyCode === 39) {
+        this.nextChapter()
+      } else if (e.keyCode === 37) {
+        this.prevChapter()
+      }
+    },
+    prevChapter () {
+      this.$store.dispatch('prevChapter')
+      this.saveBooksInfo()
+      setTimeout(() => {
+        document.body.scrollTop = 0
+      }, 300)
+    },
+    nextChapter () {
+      this.$store.dispatch('nextChapter', 50)
+      this.saveBooksInfo()
+      setTimeout(() => {
+        document.body.scrollTop = 0
+      }, 300)
+    },
+    // 切换上下工具栏 如果字体面板显示也关闭
+    clickBar () {
+      this.$store.dispatch('toggleBar')
+      this.$store.state.font_panel = false
+    },
+    //  上翻
+    pageUp () {
+      let target = document.body.scrollTop - window.screen.height - 80
+      this.startScroll(target, -20)
+    },
+    //  下翻
+    pageDown () {
+      let target = document.body.scrollTop - window.screen.height - 80
+      this.startScroll(target, 20)
+    },
+    startScroll (target, speed) {
+      let times = null
+      times = setInterval(() => {
+        if (speed > 0) {
+          if (document.body.scrollTop <= target) {
+            document.body.scrollTop += speed
+          }
+          if (document.body.scrollTop > target || document.body.scrollTop + window.screen.height >= document.body.scrollHeight) {
+            clearInterval(times)
+          }
+        } else {
+          if (document.body.scrollTop >= target) {
+            document.body.scrollTop += speed
+          }
+          if (document.body.scrollTop < target || document.body.scrollTop <= 0) {
+            clearInterval(times)
+          }
+        }
+      }, 1)
+    },
     getData (id, chapter) {
       this.loading = true
-    },
-    clickBar () {},
-    pageUp () {},
-    pageDown () {}
+      this.$http.get(this.common.api + '/book?book=' + id + '&id=' + chapter)
+      .then((res) => {
+        console.log(res)
+        this.loading = false
+        this.title = res.data.title
+        this.content = res.data.content.split('-')
+      })
+      this.$store.state.windowHeight = window.screen.height
+    }
   }
 }
 </script>

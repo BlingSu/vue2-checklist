@@ -24,5 +24,26 @@ export default {
   },
   [types.SHOW_FONT_PANEL] (state) {
     state.font_panel = !state.font_panel
+  },
+  [types.CUR_CHAPTER] (state, num) {
+    state.curChapter = num
+  },
+  [types.SWITCH_NIGHT] (state) {
+    state.bg_night = !state.bg_night
+  },
+  [types.PREV_CHAPTER] (state) {
+    if (state.curChapter <= 1) {
+      return false
+    }
+    state.curChapter--
+  },
+  [types.NEXT_CHAPTER] (state, maxChapter) {
+    if (state.curChapter >= maxChapter) {
+      return false
+    }
+    state.curChapter++
+  },
+  [types.SHOW_BOOK_DETAIL] (state, obj) {
+    state.bookDetail = obj
   }
 }

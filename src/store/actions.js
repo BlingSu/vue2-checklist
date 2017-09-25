@@ -4,7 +4,7 @@ export default {
   chooseBook ({commit}, id) {
     commit(types.CHOOSE_BOOK, id)
   },
-  toggerBar ({commit}) {
+  toggleBar ({commit}) {
     commit(types.TOGGLE_BAR)
   },
   fzSizeAdd ({commit}) {
@@ -18,5 +18,20 @@ export default {
   },
   showFontPanel ({commit}) {
     commit(types.SHOW_FONT_PANEL)
+  },
+  curChapter ({commit}, num) {
+    commit(types.CUR_CHAPTER, num)
+  },
+  switchNight ({commit}) {
+    commit(types.SWITCH_NIGHT)
+  },
+  prevChapter ({commit}) {
+    commit(types.PREV_CHAPTER)
+  },
+  nextChapter ({commit, maxChapter}) {
+    commit(types.NEXT_CHAPTER, maxChapter)
+  },
+  showBookDetail ({commit}, obj) {
+    commit(types.SHOW_BOOK_DETAIL, obj)
   }
 }

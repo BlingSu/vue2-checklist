@@ -44,7 +44,7 @@ export default {
   },
   methods: {
     showListPanel () {
-      this.$stroe.dispatch('showListPanel')
+      this.$store.dispatch('showListPanel')
       this.$store.state.font_panel = false
     },
     showFontPanel () {

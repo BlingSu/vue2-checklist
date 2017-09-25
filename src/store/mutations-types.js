@@ -10,3 +10,13 @@ export const FZ_SIZE_SUB = 'FZ_SIZE_SUB'
 export const SHOW_LIST_PANEL = 'SHOW_LIST_PANEL'
 //  字体面板
 export const SHOW_FONT_PANEL = 'SHOW_FONT_PANEL'
+//  当前章节
+export const CUR_CHAPTER = 'CUR_CHAPTER'
+//  切换夜间模式
+export const SWITCH_NIGHT = 'SWITCH_NIGHT'
+//  上一章
+export const PREV_CHAPTER = 'PREV_CHAPTER'
+//  下一章
+export const NEXT_CHAPTER = 'NEXT_CHAPTER'
+//  跳转书籍详情
+export const SHOW_BOOK_DETAIL = 'SHOW_BOOK_DETAIL'

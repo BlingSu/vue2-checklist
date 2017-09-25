@@ -37,9 +37,9 @@ export default {
       if (index >= 50) {
         index = 50
       }
-      this.$store.display('curChapter', index + 1)
+      this.$store.dispatch('curChapter', index + 1)
       this.hideListPanel()
-      this.$stroe.state.bar = false
+      this.$store.state.bar = false
       document.body.scrollTop = 0
     },
     hideListPanel () {
