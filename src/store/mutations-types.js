@@ -8,3 +8,5 @@ export const FZ_SIZE_ADD = 'FZ_SIZE_ADD'
 export const FZ_SIZE_SUB = 'FZ_SIZE_SUB'
 //  目录面板
 export const SHOW_LIST_PANEL = 'SHOW_LIST_PANEL'
+//  字体面板
+export const SHOW_FONT_PANEL = 'SHOW_FONT_PANEL'

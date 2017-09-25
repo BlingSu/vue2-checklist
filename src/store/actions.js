@@ -15,5 +15,8 @@ export default {
   },
   showListPanel ({commit}) {
     commit(types.SHOW_LIST_PANEL)
+  },
+  showFontPanel ({commit}) {
+    commit(types.SHOW_FONT_PANEL)
   }
 }

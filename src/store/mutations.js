@@ -21,5 +21,8 @@ export default {
   },
   [types.SHOW_LIST_PANEL] (state) {
     state.list_panel = !state.list_panel
+  },
+  [types.SHOW_FONT_PANEL] (state) {
+    state.font_panel = !state.font_panel
   }
 }
