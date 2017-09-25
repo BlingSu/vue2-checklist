@@ -6,3 +6,5 @@ export const TOGGLE_BAR = 'TOGGLE_BAR'
 export const FZ_SIZE_ADD = 'FZ_SIZE_ADD'
 //  减字体
 export const FZ_SIZE_SUB = 'FZ_SIZE_SUB'
+//  目录面板
+export const SHOW_LIST_PANEL = 'SHOW_LIST_PANEL'

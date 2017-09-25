@@ -16,7 +16,7 @@
     <div class="page-up" @click="pageUp()"></div>
     <div class="click-mask" @click="clickBar"></div>
     <div class="page-down" @click="pageDown()"></div>
-    <div class="top-nav-panel-bk font-container" v-show="font_panel"></div>
+    <div class="top-nav-panel-bk font-container"></div>
     <font-nav></font-nav>
     <bottom-nav></bottom-nav>
     <cover></cover>
@@ -27,7 +27,12 @@
 
 <script>
 import TopNav from './TopNav/TopNav'
-import Loading from './Loading/Loading.vue'
+import Loading from './Loading/Loading'
+import FontNav from './FontNav/FontNav'
+import BottomNav from './BottomNav/BottomNav'
+import Cover from './Cover'
+import ListPanel from './ListPanel/ListPanel'
+// import localEvent from '../store/local'
 
 export default {
   data () {
@@ -38,14 +43,21 @@ export default {
   },
   components: {
     TopNav,
-    Loading
+    Loading,
+    FontNav,
+    BottomNav,
+    Cover,
+    ListPanel
   },
   methods: {
     prevChapter () {},
     nextChapter () {},
     getData (id, chapter) {
       this.loading = true
-    }
+    },
+    clickBar () {},
+    pageUp () {},
+    pageDown () {}
   }
 }
 </script>

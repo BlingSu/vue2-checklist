@@ -12,5 +12,8 @@ export default {
   },
   fzSizeSub ({commit}) {
     commit(types.FZ_SIZE_SUB)
+  },
+  showListPanel ({commit}) {
+    commit(types.SHOW_LIST_PANEL)
   }
 }

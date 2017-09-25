@@ -18,5 +18,8 @@ export default {
     if (state.fz_size <= 14) {
       state.fz_size = 14
     }
+  },
+  [types.SHOW_LIST_PANEL] (state) {
+    state.list_panel = !state.list_panel
   }
 }

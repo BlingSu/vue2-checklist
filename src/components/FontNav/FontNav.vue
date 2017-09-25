@@ -25,7 +25,7 @@ export default {
     }
   },
   computed: {
-    ...mapState([ 'font_panel': 'bg_color' ])
+    ...mapState([ 'font_panel', 'bg_color' ])
   },
   methods: {
     changeColor (index) {
