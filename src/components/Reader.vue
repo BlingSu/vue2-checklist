@@ -16,7 +16,7 @@
     <div class="page-up" @click="pageUp()"></div>
     <div class="click-mask" @click="clickBar"></div>
     <div class="page-down" @click="pageDown()"></div>
-    <div class="top-nav-pannel-bk font-container" v-show="font_pannel"></div>
+    <div class="top-nav-panel-bk font-container" v-show="font_panel"></div>
     <font-nav></font-nav>
     <bottom-nav></bottom-nav>
     <cover></cover>

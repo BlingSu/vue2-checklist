@@ -6,5 +6,11 @@ export default {
   },
   toggerBar ({commit}) {
     commit(types.TOGGLE_BAR)
+  },
+  fzSizeAdd ({commit}) {
+    commit(types.FZ_SIZE_ADD)
+  },
+  fzSizeSub ({commit}) {
+    commit(types.FZ_SIZE_SUB)
   }
 }

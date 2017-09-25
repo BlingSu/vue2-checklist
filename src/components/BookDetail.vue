@@ -18,7 +18,7 @@
             <p class="author">作者：{{bookDetail.author}}</p>
             <p class="type">分类：{{bookDetail.type}}</p>
             <p class="word-count">{{bookDetail.wordcount}}万字</p>
-            <rate :score="bookDetail.ratings"></rate>
+            <Rate :score="bookDetail.ratings"></Rate>
           </div>
         </div>
         <div class="read-btn" v-if="!loading">
@@ -65,7 +65,7 @@
 <script>
 import {mapState} from 'vuex'
 import Similar from './Similar.vue'
-import Rate from '@/components/rate/rate'
+import Rate from '@/components/Rate/Rate'
 import Loading from './Loading/Loading.vue'
 
 export default {

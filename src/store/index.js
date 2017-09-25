@@ -8,7 +8,8 @@ Vue.use(Vuex)
 
 const state = {
   curBookDetailId: 1,
-  bar: false
+  bar: false,
+  bg_color: 1
 }
 
 export default new Vuex.Store({
