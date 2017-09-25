@@ -23,6 +23,11 @@ export default new Router({
       path: '/bookdetail/:id',
       name: 'bookdetail',
       component: resolve => require(['../components/BookDetail'], resolve)
+    },
+    {
+      path: '/reader/:id',
+      name: 'reader',
+      component: resolve => require(['../components/Reader'], resolve)
     }
   ]
 })
