@@ -1,40 +1,14 @@
 <template>
   <div class="book-detail">
-    <Loading v-show="detailLoading"></Loading>
-    <div class="detail-content">
+    <loading v-show="loading"></loading>
+    <div class="detail-content" v-if="bookDetail">
       <div class="detail-linear">
-        <header>
-          <a><i></i></a>
-          <h2></h2>
-          <a><i></i></a>
+        <header detail-top>
+          <a @click="back"><i class="back"></i>
+            <h2 class="detail-title">{{  bookDetail.name }}</h2>
+          </a>
+          <router-link to="/" class="home-btn"><i class="iconfont icon-home"></i></router-link>
         </header>
-        <div class="detail-header">
-          <div>
-            <img>
-          </div>
-          <div>
-            <h3>
-              <p></p>
-              <p></p>
-              <p></p>
-            </h3>
-          </div>
-          <div>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-          </div>
-        </div>
-        <div class="read-btn">
-          <button></button>
-          <button></button>
-        </div>
-        <div class="detail-intro"></div>
-        <div class="detail-tag"></div>
-        <div class="detail-favorite"></div>
       </div>
     </div>
   </div>
@@ -49,7 +23,13 @@ export default {
   },
   data () {
     return {
-      detailLoading: false
+      loading: false,
+      bookDetail: {}
+    }
+  },
+  methods: {
+    back () {
+      this.$router.go(-1)
     }
   }
 }
