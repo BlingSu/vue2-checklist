@@ -56,7 +56,6 @@ export default {
     ListPanel
   },
   created () {
-    console.log(this.$store.s)
     //  本地是否存文字大小
     if (localEvent.StorageGetter('fz_size')) {
       this.$store.state.fz_size = localEvent.StorageGetter('fz_size')
