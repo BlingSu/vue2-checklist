@@ -44,3 +44,41 @@
       |-router              #路由
           index.js
 ```
+
+## 初始化项目
+
+```bash
+cd vue-library
+npm init
+npm i webpack --save -dev
+```
+
+新建源码和入口文件
+
+```bash
+cd src
+touch main.js
+```
+
+webpack.dev.config.js配置,引入自动path模块
+
+```js
+const path = require(`path`)
+
+module.exports = {
+  entry: path.join(__dirname, 'src/main.js'),
+  output: {
+    path: path.join(__dirname, './dist'),
+    filename: 'bundle.js'
+  }
+}
+
+```
+
+配置命令
+```bash
+"scripts": {
+    "dev-build": "webpack --config webpack.dev.config.js"
+ }
+```
+执行 npm run dev-build 打包完后可以打开index.html可以看到入口文件的内容
