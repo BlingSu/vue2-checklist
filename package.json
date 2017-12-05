@@ -4,7 +4,7 @@
   "description": "vue图书商城",
   "main": "main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev-build": "webpack --config webpack.dev.config.js"
   },
   "repository": {
     "type": "git",
@@ -14,5 +14,8 @@
   "bugs": {
     "url": "https://github.com/angelasubi/vue-library/issues"
   },
-  "homepage": "https://github.com/angelasubi/vue-library#readme"
+  "homepage": "https://github.com/angelasubi/vue-library#readme",
+  "devDependencies": {
+    "webpack": "^3.10.0"
+  }
 }
