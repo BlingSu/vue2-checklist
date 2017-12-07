@@ -60,7 +60,7 @@ cd src
 touch main.js
 ```
 
-webpack.dev.config.js配置,引入自动path模块
+webpack.dev.config.js配置,引入path模块
 
 ```js
 const path = require(`path`)

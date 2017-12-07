@@ -1,1 +1,3 @@
-document.querySelector('#app').innerHTML = `sb`
+const pageContent = str => { document.getElementById('app').innerHTML = str }
+
+pageContent(`hello webpack...`)
