@@ -82,3 +82,184 @@ module.exports = {
  }
 ```
 执行 npm run dev-build 打包完后可以打开index.html可以看到入口文件的内容
+
+
+## vue
+
+```shell
+npm i vue --save
+npm i vue-template-compiler css-loader vue-loader style-loader --save-dev
+
+cd src
+touch App.vue
+
+mkdir component && cd component
+mkdir Home && cd Home
+touch Home.vue
+
+```
+
+Home.vue
+```vue
+<template>
+  <div>
+    this is test vue
+  </div>
+</template>
+
+<script>
+export default {
+  data () {
+    return {}
+  }
+}
+</script>
+```
+App.vue
+
+```vue
+<template>
+  <div id="app">
+    <router-view></router-view>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'app'
+}
+</script>
+
+<style>
+body {
+  margin: 0;
+  padding: 0;
+}
+</style>
+
+```
+
+需要配置下main.js,实例一波vue
+```js
+/**
+ * this is vue entry config
+ * @author angelasu 
+ * @date 2017/12/07
+ */
+import Vue from 'vue'
+import App from './App.vue'
+
+Vue.config.productionTip = false
+
+new Vue({
+  el: '#app',
+  template: '<App/>',
+  components: { App }
+})
+
+```
+
+配置webpack.dev.config.js
+
+> module 
+```js
+{
+  test: /\.vue$/,
+  loader: 'vue-loader'
+},
+{
+  test:/\.css$/,
+  loader:'style!css'
+}
+```
+
+> plugins的HtmlWebpackPlugin 负责让打包后的文件自己引入到index.html里面
+```js
+npm i html-webpack-plugin --save-dev
+
+plugins: [
+  new HtmlWebpackPlugin({
+    inject: true,
+    filename: 'index.html',
+    template: path.resolve(__dirname, 'index.html')
+  })
+]
+```
+
+> 启动服务
+```js
+devServer: {
+  port: 8888,
+  contentBase: path.join(__dirname, './dist'),
+  historyApiFallback: true
+},
+```
+
+> 配置webpack-dev-server 命令
+```shell
+"dev": "webpack-dev-server --config webpack.dev.config.js --color --progress"
+```
+执行npm run dev 会发现页面是空的 没有渲染<router-view></router-view> 所以需要vue-router
+
+
+## vue-router
+
+```shell
+cd src && mkdir router
+cd router
+touch router.js
+```
+
+router.js
+```js
+npm i vue-router --save
+```
+
+router/index.js
+```js
+import Vue from 'vue'
+import Router from 'vue-router'
+
+Vue.use(Router)
+
+export default new Router({
+  routes: [
+    {
+      path: '/',
+      redirect: '/home'
+    },
+    {
+      path: '/home',
+      component: resolve => require(['../component/Home/Home.vue'], resolve)
+    }
+  ]
+})
+
+```
+
+然后要把router引到main配置文件里面
+
+main.js
+
+```js
+/**
+ * this is vue entry config
+ * @author angelasu 
+ * @date 2017/12/07
+ */
+import Vue from 'vue'
+import App from './App.vue'
+import router from './router/index.js'
+
+Vue.config.productionTip = false
+
+new Vue({
+  el: '#app',
+  router,
+  template: '<App/>',
+  components: { App }
+})
+
+```
+
+执行 npm run dev 打开 http://localhost:8888 就可以看到效果啦😁
