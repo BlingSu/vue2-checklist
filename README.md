@@ -100,7 +100,7 @@ touch Home.vue
 ```
 
 Home.vue
-```vue
+```html
 <template>
   <div>
     this is test vue
@@ -117,7 +117,7 @@ export default {
 ```
 App.vue
 
-```vue
+```html
 <template>
   <div id="app">
     <router-view></router-view>

@@ -29,7 +29,7 @@ module.exports = {
     contentBase: path.join(__dirname, './dist'),
     historyApiFallback: true
   },
-  // resolve: { alias: { 'vue': 'vue/dist/vue.js' } },
+  resolve: { alias: { 'vue': 'vue/dist/vue.js' } },
   plugins: [
     new HtmlWebpackPlugin({
       inject: true,
