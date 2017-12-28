@@ -1,6 +1,6 @@
 <template>
   <div>
-    this is test vue
+    {{ test }}
   </div>
 </template>
 
@@ -8,10 +8,12 @@
 export default {
   data () {
     return {}
+  },
+
+  computed: {
+    test () {
+      return 'this is test vue'
+    }
   }
 }
 </script>
-
-<style>
-
-</style>
