@@ -263,3 +263,60 @@ new Vue({
 ```
 
 执行 npm run dev 打开 http://localhost:8888 就可以看到效果啦😁
+
+
+## 引入Mint-UI
+
+```bash
+cd vue-library
+npm i mint-ui --save
+```
+
+在 main.js里面引入
+
+```js
+import MintUI from 'mint-ui'
+import 'mint-ui/lib/style.css'
+
+Vue.use(MintUI)
+```
+
+这时候会发现终端报 can't reslove 'style'
+
+所以需要配置一下 style-loader 和 css-loader
+
+```bash
+npm i --save-dev style-loader css-loader
+```
+
+然后再webpack.dev.config.js里面修改rules
+
+```js
+{
+  test:/\.css$/,
+  use: [
+    { loader: 'style-loader' },
+    { loader: 'css-loader' }
+  ]
+}
+```
+
+这样就能在Home.vue里面引入mint-ui的组建咯~
+
+Home.vue
+```js
+<template>
+  <div>
+    <mt-header fixed title="test component"></mt-header>
+  </div>
+</template>
+
+<script>
+
+export default {
+  data () {
+    return {}
+  }
+}
+</script>
+```

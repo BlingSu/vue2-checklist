@@ -1,19 +1,14 @@
 <template>
   <div>
-    {{ test }}
+    <mt-header fixed title="test component"></mt-header>
   </div>
 </template>
 
 <script>
+
 export default {
   data () {
     return {}
-  },
-
-  computed: {
-    test () {
-      return 'this is test vue'
-    }
   }
 }
 </script>
