@@ -1,6 +1,6 @@
 <template>
   <div>
-    <mt-header fixed title="test component"></mt-header>
+    
   </div>
 </template>
 
@@ -8,7 +8,12 @@
 
 export default {
   data () {
-    return {}
+    return {
+      
+    }
   }
 }
 </script>
+
+<style scopedSlots>
+</style>

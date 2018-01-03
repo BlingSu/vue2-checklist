@@ -320,3 +320,12 @@ export default {
 }
 </script>
 ```
+
+
+## Components
+> Loading.vue
+
+```bash
+cd src/component
+mkdir Loading && cd Loading && touch Loading.vue
+```
