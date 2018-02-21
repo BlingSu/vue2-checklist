@@ -44,3 +44,41 @@ touch main.js
 # 简单输出
 touch App.vue
 ```
+
+添加sytlus 和 stylus-loader 模块
+```bash
+npm i stylus stylus-loader -D
+```
+
+增加ESlint 规则
+
+```js
+// 不检测文件末尾是否有空行
+'eol-last': 0,
+// function 左括号少sapce 去除
+'space-before-function-paren': 0
+```
+
+在webapck.base.conf.js 里面修改配置
+``` js
+function resolve (dir) {
+  // 当前目录往上找
+  return path.join(__dirname, '..', dir)
+}
+
+resolve: {
+  extensions: ['.js', '.vue', '.json'],
+  alias: {
+    '@': resolve('src'),
+    'common': resolve('src/common')
+  }
+}
+```
+
+main.js
+```js
+// 配置完别名就可以自己找到这个模块
+import 'common/stylus/index.styl'
+```
+
+执行npm run dev 就不会报错了
