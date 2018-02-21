@@ -70,6 +70,7 @@ resolve: {
   extensions: ['.js', '.vue', '.json'],
   alias: {
     '@': resolve('src'),
+    // 新增的别名
     'common': resolve('src/common')
   }
 }
