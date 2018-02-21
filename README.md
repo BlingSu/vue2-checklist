@@ -488,6 +488,7 @@ export default {
     _getRecommend () {
       getRecommend().then((r) => {
         if (r.code === ERR_OK) {
+          // 如果为0 返回正确的数据
           console.log(r)
         }
       })
@@ -495,4 +496,133 @@ export default {
   }
 }
 </script>
+```
+
+## 开发轮播图组件 (基础组件库)
+
+``` bash
+cd src && mkdir base
+cd base && mkdir slider
+cd slider && touch slider.vue
+```
+
+slider.vue
+
+``` vue
+/**
+ * template
+ * slider 会插到slot里面
+ */
+
+<template>
+  <div class="slider">
+    <div class="slider-group">
+      <slot></slot>
+    </div>
+    <div class="dots"></div>
+  </div>
+</template>
+
+```
+
+在recommend中引入 slider组件 然后遍历获取到的数据
+
+``` vue
+/* 插槽内容对应slot */
+  <slider>
+    <div v-for="item in recommends" :key="item.id">
+      <a :href="item.linkUrl">
+        <img :src="item.picUrl">
+      </a>
+    </div>
+  </slider>
+```
+
+安装轮播
+``` bash
+npm i better-scroll -S
+```
+
+slider.vue
+``` vue
+/* 设置轮播属性 */
+import BScroll from 'better-scroll'
+export default {
+  props: {
+    loop: {
+      // 循环轮播
+      type: Boolean,
+      default: true
+    },
+    autoPlay: {
+      // 自动轮播
+      type: Boolean,
+      default: true
+    },
+    interval: {
+      // 间隔轮播
+      type: Number,
+      default: 4000 // 时间
+    }
+  }
+}
+```
+
+封装dom方法
+
+```js
+export function addClass (el, className) {
+  //  一个dom 对象和 class
+  if (hasClass(el, className)) {
+    return
+  }
+  let newClass = el.className.split(' ')
+  newClass.push(className)
+  el.className = newClass.join(' ')
+}
+
+export function hasClass (el, className) {
+  // 判断是否有这个class
+  let reg = new RegExp('(^|\\s)' + className + '(\\s|$)')
+  return reg.test(el.className)
+}
+
+```
+
+设置轮播宽度以及初始化
+
+```js
+_setSilderWidth () {
+  // 设置宽度 获取children
+  this.children = this.$refs.sliderGroup.children
+
+  let width = 0
+  let sliderWidth = this.$refs.slider.clientWidth
+
+  for (let i = 0; i < this.children.length; i++) {
+    let child = this.children[i]
+    addClass(child, 'slider-item')
+    child.style.width = sliderWidth + 'px'
+    width += sliderWidth
+  }
+
+  if (this.loop) {
+    width += 2 * sliderWidth
+  }
+
+  this.$refs.sliderGroup.style.width = width + 'px'
+}
+
+_initSlider () {
+  this.slider = new BScroll(this.$refs.slider, {
+    scrollX: true,
+    scrollY: false,
+    momentum: false,
+    snap: true,
+    snapLoop: this.loop,
+    snapThreshold: 0.3,
+    snapSpeed: 400
+  })
+}
+
 ```
