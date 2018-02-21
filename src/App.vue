@@ -1,14 +1,19 @@
 <template>
   <div id="app">
-    hello
+    <m-header></m-header>
   </div>
 </template>
 
-<script type="text/javascript"></script>
+<script type="text/javascript">
+import MHeader from 'components/m-header/m-header'
+
+export default {
+  components: {
+    MHeader
+  }
+}
+</script>
 
 <style scoped lang="stylus" rel="stylesheet/stylus">
-  @import '~common/stylus/variable'
 
-  #app
-    color: $color-theme
 </style>
