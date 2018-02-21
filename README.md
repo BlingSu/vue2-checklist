@@ -148,7 +148,7 @@ export default {
 
   /*
   引入 variable stylus的变量，比如颜色字体
-  引入maxin 使用方法，比如bakground-image
+  引入 maxin 使用方法，比如bakground-image
   */
 <style scoped lang="stylus" rel="stylesheet/stylus">
   @import "~common/stylus/variable"
@@ -203,3 +203,159 @@ export default {
 ```
 
 执行npm run dev 就可以看到效果啦～
+
+
+## 路由 Vue-router
+
+创建所需要的组件
+``` bash
+cd src/components
+# 排行页面
+mkdir rank && cd rank
+touch rank.vue
+# 推荐页面
+mkdir recommend && cd recommend
+touch recommend.vue
+# 搜索页面
+mkdir search && cd search
+touch search.vue
+# 歌手页面
+mkdir signer && cd signer
+touch signer.vue
+```
+
+router/index.js
+
+路由配置
+
+``` vue
+import Vue from 'vue'
+import Router from 'vue-router'
+
+import Rank from 'components/rank/rank'
+import Recommend from 'components/recommend/recommend'
+import Search from 'components/search/search'
+import Singer from 'components/singer/singer'
+
+Vue.use(Router)
+
+export default new Router({
+  routes: [
+    { path: '/', redirect: '/recommend' },
+    { path: '/rank', component: Rank },
+    { path: '/recommend', component: Recommend },
+    { path: '/search', component: Search },
+    { path: '/singer', component: Singer }
+  ]
+})
+
+```
+
+man.js
+```javascript
+/* 引入router并且传下来 */
+import router from './router'
+
+/* eslint-disable no-new */
+new Vue({
+  el: '#app',
+  render: h => h(App),
+  router
+})
+
+```
+
+然后在App.vue中添加router-view
+
+```html
+<router-view></router-view>
+```
+
+
+新增导航Tab组件
+
+```bash
+cd src/components
+mkdir tab && cd tab
+touch tab.vue
+```
+
+``` vue
+/* tag是渲染成div */
+<template>
+  <div class="tab">
+    <router-link tag="div" class="tab-item" to="/recommend">
+      <span class="tab-link">推荐</span>
+    </router-link>
+    <router-link tag="div" class="tab-item" to="/singer">
+      <span class="tab-link">歌手</span>
+    </router-link>
+    <router-link tag="div" class="tab-item" to="/rank">
+      <span class="tab-link">排行</span>
+    </router-link>
+    <router-link tag="div" class="tab-item" to="/search">
+      <span class="tab-link">搜索</span>
+    </router-link>
+  </div>
+</template>
+
+<script>
+export default {
+  data () {
+    return {}
+  }
+}
+</script>
+
+<style scoped lang="stylus" rel="stylesheet/stylus">
+  @import '~common/stylus/variable'
+
+  .tab
+    display: flex
+    height: 44px
+    line-height: 44px
+    font-size: $font-size-medium
+    .tab-item
+      flex: 1
+      text-align: center
+      .tab-link
+        padding-bottom: 5px
+        color: $color-text-l
+        /* 当前router被激活的时候，会添加一个class="tab-link" */
+      &.router-link-active
+        .tab-link
+          color: $color-theme
+          border-bottom: 2px solid $color-theme
+</style>
+
+```
+
+然后在App.vue中引入tab组件，并且注册
+
+``` vue
+<template>
+  <div id="app">
+    <m-header></m-header>
+    <tab></tab>
+    <router-view></router-view>
+  </div>
+</template>
+
+<script type="text/javascript">
+import MHeader from 'components/m-header/m-header'
+import Tab from 'components/tab/tab'
+
+export default {
+  components: {
+    MHeader,
+    Tab
+  }
+}
+</script>
+
+<style scoped lang="stylus" rel="stylesheet/stylus">
+
+</style>
+
+```
+执行npm run dev 就可以看到效果咯～
