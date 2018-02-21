@@ -359,3 +359,140 @@ export default {
 
 ```
 执行npm run dev 就可以看到效果咯～
+
+## 推荐页面
+
+### JSONP
+
+```js
+npm i jsonp --save
+```
+
+封装jsonp方法
+
+``` bash
+cd src/common/js
+touch jsonp.js
+```
+
+封装JSONP方法
+```js
+import originJSONP from 'jsonp'
+
+export default function jsonp(url, data, option) {
+  // 如果url小于0 没有问号就添加一个 否则就是&
+  url += (url.indexOf('?') < 0 ? '?' : '&') + param(data)
+
+  // 返回一个promise
+  return new Promise((resolve, reject) => {
+    originJSONP(url, option, (err, data) => {
+      if (!err) {
+        resolve(data)
+      } else {
+        reject(err)
+      }
+    })
+  })
+}
+
+function param (data) {
+  let url = ''
+  for (var k in data) {
+    let value = data[k] !== undefined ? data[k] : ''
+    url += `&${k}=${encodeURIComponent(value)}`
+  }
+  // 如果url有 第一个&去掉 否则为空
+  return url ? url.substring(1) : ''
+}
+
+```
+
+JSONP抓取数据
+* 在api下封装对应的方法
+
+``` bash
+cd src/api
+# 添加推荐相关的 api
+touch recommend.js
+```
+
+在api下创建一个config.js,用来封装一写参数
+```js
+export const commonParams = {
+  g_tk: 5381,
+  inCharset: 'utf-8',
+  outCharset: 'utf-8',
+  notice: 0,
+  format: 'jsonp'
+}
+
+// 库
+export const options = {
+  param: 'jsonpCallback'
+}
+
+export const ERR_OK = 0
+```
+
+recommend.js
+```js
+import jsonp from 'common/js/jsonp'
+import {commonParams, options} from './config'
+
+/* 通过jsonp抓取轮播图数据 */
+export function getRecommend() {
+  const url = 'https://c.y.qq.com/musichall/fcgi-bin/fcg_yqqhomepagerecommend.fcg'
+
+  const data = Object.assign({}, commonParams, {
+    platform: 'h5',
+    uin: 0,
+    needNewCode: 1
+  })
+
+  // 返回一个promise
+  return jsonp(url, data, options)
+}
+
+```
+
+在 recommend.vue中获取数据并且渲染
+
+``` vue
+// template基本架构
+
+<template>
+  <div class="recommend">
+    <div class="recommend-content">
+      <div class="slider-wrapper"></div>
+    </div>
+    <div class="recommend-list">
+      <h1 class="list-title">热门歌单推荐</h1>
+      <ul></ul>
+    </div>
+  </div>
+</template>
+
+```
+获取数据
+``` js
+<script>
+import { getRecommend } from 'api/recommend'
+import { ERR_OK } from 'api/config'
+
+export default {
+  created () {
+    this._getRecommend()
+  },
+
+  methods: {
+    _getRecommend () {
+      getRecommend().then((r) => {
+        if (r.code === ERR_OK) {
+          console.log(r)
+        }
+      })
+    }
+  }
+}
+</script>
+```
