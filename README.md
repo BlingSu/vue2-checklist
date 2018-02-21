@@ -570,6 +570,11 @@ export default {
 
 封装dom方法
 
+``` bash
+cd src/common/js
+touch dom.js
+```
+
 ```js
 export function addClass (el, className) {
   //  一个dom 对象和 class
