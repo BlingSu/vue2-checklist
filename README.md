@@ -2,20 +2,45 @@
 
 > 音乐播放器
 
-## Build Setup
+## 项目运行
 
 ``` bash
-# install dependencies
+# 安装依赖
 npm install
 
-# serve with hot reload at localhost:8080
+# 8080端口热加载
 npm run dev
 
-# build for production with minification
+# 打包构建
 npm run build
-
-# build for production and view the bundle analyzer report
-npm run build --report
 ```
 
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+## 项目目录以及公共样式资源准备
+
+``` bash
+cd src
+rm -rf *
+
+# 在src目录下
+
+# 跟后端请求相关的代码(ajax,jsonp请求)
+mkdir api
+
+# 通用静态资源
+mkdir common
+
+# 通用组件
+mkdir components
+
+# 路由
+mkdir router
+
+# vuex 管理
+mkdir store
+
+# 入口文件
+touch main.js
+
+# 简单输出
+touch App.vue
+```
