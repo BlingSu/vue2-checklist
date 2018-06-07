@@ -1,0 +1,24 @@
+{
+  "name": "vue2-checklist",
+  "version": "1.0.0",
+  "description": "checklist using vue2.0",
+  "main": "index.js",
+  "scripts": {
+    "dev": "poi dev/index.js",
+    "build": "poi build ./src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bbbbbbbb888888/vue-checklist.git"
+  },
+  "keywords": [
+    "vue2-checklist",
+    "checklist"
+  ],
+  "author": "angelasu",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bbbbbbbb888888/vue-checklist/issues"
+  },
+  "homepage": "https://github.com/bbbbbbbb888888/vue-checklist#readme"
+}
