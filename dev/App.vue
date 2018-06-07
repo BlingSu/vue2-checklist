@@ -27,6 +27,7 @@ export default {
 }
 </script>
 
+<style lang="scss" src="../src/styles/common.scss"></style>
 <style scoped>
 .check-input {
   border: 1px solid #000;
