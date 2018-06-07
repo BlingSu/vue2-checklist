@@ -21,6 +21,9 @@
     "url": "https://github.com/bbbbbbbb888888/vue-checklist/issues"
   },
   "homepage": "https://github.com/bbbbbbbb888888/vue-checklist#readme",
-  "dependencies": {
+  "devDependencies": {
+    "node-sass": "^4.7.2",
+    "sass-loader": "^6.0.6",
+    "poi": "^10.2.3"
   }
 }

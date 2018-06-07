@@ -1,6 +1,7 @@
 <template>
   <div id="app">
-    <vue-check-list></vue-check-list>
+    <input class="check-input" type="text" placeholder="请选择地址" @click="getAddress">
+    <vue-check-list v-if="isShow"></vue-check-list>
   </div>
 </template>
 
@@ -13,9 +14,21 @@ export default {
     VueCheckList
   },
   data() {
-    return {}
+    return {
+      isShow: false
+    }
   },
-  mounted() {
+  methods: {
+    getAddress() {
+      document.activeElement.blur()
+      this.isShow = !this.isShow
+    }
   }
 }
 </script>
+
+<style scoped>
+.check-input {
+  border: 1px solid #000;
+}
+</style>

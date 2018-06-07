@@ -16,3 +16,5 @@ export default {
   created() {}
 }
 </script>
+
+<style lang="scss" src="./styles/check-list.scss"></style>
