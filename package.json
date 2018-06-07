@@ -20,5 +20,7 @@
   "bugs": {
     "url": "https://github.com/bbbbbbbb888888/vue-checklist/issues"
   },
-  "homepage": "https://github.com/bbbbbbbb888888/vue-checklist#readme"
+  "homepage": "https://github.com/bbbbbbbb888888/vue-checklist#readme",
+  "dependencies": {
+  }
 }
