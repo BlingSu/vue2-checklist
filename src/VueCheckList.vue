@@ -29,21 +29,21 @@
 <script>
 export default {
   name: 'vue-check-list',
-  props: ['showMask'],
+  props: {
+    showMask: {
+      type: Boolean,
+      default: false
+    },
+    listData: {
+      type: Array,
+      default: []
+    }
+  },
   data() {
     return {
-      lineData: [
-        {id: 1, address: '厦门软件园二期', classShow: false},
-        {id: 2, address: '厦门软件园三期', classShow: false},
-        {id: 3, address: '厦门软件园四期', classShow: false},
-        {id: 4, address: '厦门软件园五期', classShow: false},
-        {id: 5, address: '厦门软件园六期', classShow: false},
-        {id: 6, address: '厦门软件园七期', classShow: false},
-        {id: 7, address: '厦门软件园八期', classShow: false},
-        {id: 8, address: '厦门软件园九期', classShow: false}
-      ],
       resData: [],
-      isShowMask: false
+      isShowMask: false,
+      lineData: []
     }
   },
 
@@ -89,7 +89,7 @@ export default {
         }
       })
       if (this.resData.length !== 0) {
-        this.$emit('listdata', this.resData)
+        this.$emit('on-change', this.resData)
       }
     },
     handleMask() {
@@ -102,6 +102,7 @@ export default {
     if (this.showMask) {
       this.isShowMask = true
     }
+    this.lineData = this.listData
   }
 }
 </script>

@@ -4,8 +4,9 @@
     <p v-for="item in content" :key="item.id">{{ item.address }}</p>
     <vue-check-list
       v-if="isShow"
+      :listData="lineData"
       @cancelState="getCancelState"
-      @listdata="getlistData"
+      @on-change="getlistData"
       @checkState="getCheckState"
       :showMask="mask">
     </vue-check-list>
@@ -24,7 +25,17 @@ export default {
     return {
       isShow: false,
       content: [],
-      mask: false
+      mask: false,
+      lineData: [
+        {id: 1, address: '厦门软件园二期', classShow: false},
+        {id: 2, address: '厦门软件园三期', classShow: false},
+        {id: 3, address: '厦门软件园四期', classShow: false},
+        {id: 4, address: '厦门软件园五期', classShow: false},
+        {id: 5, address: '厦门软件园六期', classShow: false},
+        {id: 6, address: '厦门软件园七期', classShow: false},
+        {id: 7, address: '厦门软件园八期', classShow: false},
+        {id: 8, address: '厦门软件园九期', classShow: false}
+      ],
     }
   },
   methods: {
