@@ -3,6 +3,7 @@
   position: fixed;
   bottom: 0;
   z-index: 199;
+  background-color: #fff;
   .topbar {
     display: -webkit-flex;
     display: flex;
@@ -10,7 +11,7 @@
     align-items: center;
     height: 44px;
     font-size: 16px;
-    padding: 9px 15px;
+    padding: 6px 15px;
     border-bottom: 1px solid #E5E5E5;
     .cancel {
       color: #888;
@@ -64,17 +65,17 @@
           text-align: center;
           line-height: 20px;
         }
+        .check-disabled {
+          width: 20px;
+          height: 20px;
+          border-radius: 50%;
+          border: 1px solid #C9C9C9;
+          background-color: #C9C9C9;
+          color: #C9C9C9;
+          text-align: center;
+          line-height: 20px;
+        }
       }
     }
-  }
-  .mask {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 188;
-    background: rgba(0, 0, 0, .5);
-    transition: all .5s;
   }
 }

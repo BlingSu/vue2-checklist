@@ -1,7 +1,8 @@
 <template>
   <div id="app">
     <input class="check-input" type="text" placeholder="请选择地址" @click="getAddress">
-    <vue-check-list v-if="isShow"></vue-check-list>
+    <vue-check-list v-if="isShow" @cancelState="getCancelState"></vue-check-list>
+    <div class="mask" v-if="isShowMask" @click="handleMask"></div>
   </div>
 </template>
 
@@ -15,13 +16,25 @@ export default {
   },
   data() {
     return {
-      isShow: false
+      isShow: false,
+      isShowMask: false
     }
   },
   methods: {
     getAddress() {
       document.activeElement.blur()
-      this.isShow = !this.isShow
+      this.isShow = true
+      this.isShowMask = true
+    },
+    handleMask() {
+      this.isShowMask = false
+      this.isShow = false
+    },
+    getCancelState(v) {
+      if (v) {
+        this.isShow = false
+        this.isShowMask = false
+      }
     }
   }
 }
