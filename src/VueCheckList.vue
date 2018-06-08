@@ -1,39 +1,49 @@
 <template>
   <div class="vue-check-list">
-    <div class="topbar">
-      <span class="cancel" @click="cancelList">取消</span>
-      <span class="address">选择地址</span>
-      <span class="success">完成</span>
-    </div>
-    <div class="desc">
-      已经选择{{ addressLen }}个地址，最多可选2个
-    </div>
-    <div class="list">
-      <div class="line"
-        v-for="item in lineData"
-        :key="item.id">
-        <div class="p">
-          <div class="cont">{{ item.address }}</div>
-          <div :class="classState(item.classShow)"
-               @click="changeClass(item, $event)" ref="check">
-            ✓</div>
+    <div class="content">
+      <div class="topbar">
+        <span class="cancel" @click="cancelList">取消</span>
+        <span class="address">选择地址</span>
+        <span class="success" @click="handleSuccess">完成</span>
+      </div>
+      <div class="desc">
+        已经选择{{ addressLen }}个地址，最多可选2个
+      </div>
+      <div class="list">
+        <div class="line"
+          v-for="item in lineData"
+          :key="item.id">
+          <div class="p">
+            <div class="cont">{{ item.address }}</div>
+            <div :class="classState(item.classShow)"
+                 @click="changeClass(item, $event)" ref="check">
+              ✓</div>
+          </div>
         </div>
       </div>
     </div>
+    <div class="mask" v-if="isShowMask" @click="handleMask"></div>
   </div>
 </template>
 
 <script>
 export default {
   name: 'vue-check-list',
+  props: ['showMask'],
   data() {
     return {
       lineData: [
         {id: 1, address: '厦门软件园二期', classShow: false},
         {id: 2, address: '厦门软件园三期', classShow: false},
         {id: 3, address: '厦门软件园四期', classShow: false},
-        {id: 4, address: '厦门软件园五期', classShow: false}
-      ]
+        {id: 4, address: '厦门软件园五期', classShow: false},
+        {id: 5, address: '厦门软件园六期', classShow: false},
+        {id: 6, address: '厦门软件园七期', classShow: false},
+        {id: 7, address: '厦门软件园八期', classShow: false},
+        {id: 8, address: '厦门软件园九期', classShow: false}
+      ],
+      resData: [],
+      isShowMask: false
     }
   },
 
@@ -45,7 +55,6 @@ export default {
 
   methods: {
     changeClass(item, $event) {
-      console.log($event)
       if ($event.target.className == 'check-disabled') {
         return false
       }
@@ -63,8 +72,6 @@ export default {
           for (let i = 0; i < dom.length; i++) {
             dom[i].setAttribute('class', 'dis-rad')
           }
-        } else {
-          console.log(1)
         }
         return 'rad'
       } else {
@@ -73,10 +80,28 @@ export default {
     },
     cancelList() {
       this.$emit('cancelState', true)
+    },
+    handleSuccess() {
+      this.resData = []
+      this.lineData.forEach(v => {
+        if (v.classShow) {
+          this.resData.push(v)
+        }
+      })
+      if (this.resData.length !== 0) {
+        this.$emit('listdata', this.resData)
+      }
+    },
+    handleMask() {
+      this.$emit('checkState', false)
+      this.isShowMask = false
     }
   },
 
   created() {
+    if (this.showMask) {
+      this.isShowMask = true
+    }
   }
 }
 </script>

@@ -1,8 +1,14 @@
 <template>
   <div id="app">
     <input class="check-input" type="text" placeholder="请选择地址" @click="getAddress">
-    <vue-check-list v-if="isShow" @cancelState="getCancelState"></vue-check-list>
-    <div class="mask" v-if="isShowMask" @click="handleMask"></div>
+    <p v-for="item in content" :key="item.id">{{ item.address }}</p>
+    <vue-check-list
+      v-if="isShow"
+      @cancelState="getCancelState"
+      @listdata="getlistData"
+      @checkState="getCheckState"
+      :showMask="mask">
+    </vue-check-list>
   </div>
 </template>
 
@@ -17,23 +23,34 @@ export default {
   data() {
     return {
       isShow: false,
-      isShowMask: false
+      content: [],
+      mask: false
     }
   },
   methods: {
     getAddress() {
       document.activeElement.blur()
       this.isShow = true
-      this.isShowMask = true
+      this.mask = true
     },
     handleMask() {
-      this.isShowMask = false
       this.isShow = false
     },
     getCancelState(v) {
       if (v) {
         this.isShow = false
-        this.isShowMask = false
+      }
+    },
+    getlistData(v) {
+      this.content = []
+      for (let i = 0; i < v.length; i++) {
+        this.content.push(v[i])
+      }
+      this.isShow = false
+    },
+    getCheckState(v) {
+      if(!v) {
+        this.isShow = false
       }
     }
   }
