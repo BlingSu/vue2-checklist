@@ -5,9 +5,9 @@
     <vue-check-list
       v-if="isShow"
       :listData="lineData"
-      @cancelState="getCancelState"
+      @cancel-state="getCancelState"
       @on-change="getlistData"
-      @checkState="getCheckState"
+      @check-state="getCheckState"
       :showMask="mask">
     </vue-check-list>
   </div>

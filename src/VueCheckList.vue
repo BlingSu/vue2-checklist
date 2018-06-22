@@ -1,5 +1,5 @@
 <template>
-  <div class="vue-check-list">
+  <div class="vue2-checklist">
     <div class="content">
       <div class="topbar">
         <span class="cancel" @click="cancelList">取消</span>
@@ -28,7 +28,7 @@
 
 <script>
 export default {
-  name: 'vue-check-list',
+  name: 'vue2-checklist',
   props: {
     showMask: {
       type: Boolean,
@@ -79,7 +79,7 @@ export default {
       }
     },
     cancelList() {
-      this.$emit('cancelState', true)
+      this.$emit('cancel-state', true)
     },
     handleSuccess() {
       this.resData = []
@@ -88,12 +88,10 @@ export default {
           this.resData.push(v)
         }
       })
-      if (this.resData.length !== 0) {
-        this.$emit('on-change', this.resData)
-      }
+      this.$emit('on-change', this.resData)
     },
     handleMask() {
-      this.$emit('checkState', false)
+      this.$emit('check-state', false)
       this.isShowMask = false
     }
   },

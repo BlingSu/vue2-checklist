@@ -4,7 +4,6 @@
 import VueCheckList from './VueCheckList.vue'
 
 const Vue2CheckList = {
-  VueCheckList,
   install: function(Vue) {
     Vue.component(VueCheckList.name, VueCheckList)
   }
