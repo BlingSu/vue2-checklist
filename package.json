@@ -1,11 +1,11 @@
 {
   "name": "vue2-checklist",
-  "version": "1.1.2",
+  "version": "1.1.4",
   "description": "checklist using vue2.0",
   "main": "dist/vue2-checklist.js",
   "scripts": {
     "dev": "poi dev/index.js",
-    "build": "poi build ./src/index.js"
+    "build": "poi build ./src/index.js --library Vue2CheckList"
   },
   "files": [
     "dist"
