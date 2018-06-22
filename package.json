@@ -1,6 +1,6 @@
 {
   "name": "vue2-checklist",
-  "version": "1.1.4",
+  "version": "1.2.0",
   "description": "checklist using vue2.0",
   "main": "dist/vue2-checklist.js",
   "scripts": {
