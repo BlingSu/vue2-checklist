@@ -105,4 +105,5 @@ export default {
 }
 </script>
 
+<style lang="scss" src="./styles/common.scss"></style>
 <style lang="scss" src="./styles/check-list.scss"></style>
