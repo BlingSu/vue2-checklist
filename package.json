@@ -1,31 +1,31 @@
 {
   "name": "vue2-checklist",
-  "version": "1.2.0",
+  "version": "1.2.2",
   "description": "checklist using vue2.0",
-  "main": "dist/vue2-checklist.js",
-  "scripts": {
-    "dev": "poi dev/index.js",
-    "build": "poi build ./src/index.js --library Vue2CheckList"
-  },
-  "files": [
-    "dist"
-  ],
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/angelasubi/vue2-checklist.git"
-  },
   "keywords": [
     "vue2-checklist",
     "checklist"
   ],
   "author": "angelasubi",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/angelasubi/vue2-checklist.git"
+  },
+  "main": "dist/vue2-checklist.js",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "dev": "poi dev/index.js",
+    "build": "poi build ./src/index.js --library Vue2CheckList"
+  },
+  "devDependencies": {
+    "node-sass": "^4.7.2",
+    "sass-loader": "^6.0.6"
+  },
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/angelasubi/vue2-checklist/issues"
   },
-  "homepage": "https://github.com/angelasubi/vue2-checklist#readme",
-  "devDependencies": {
-    "node-sass": "^4.7.2",
-    "sass-loader": "^6.0.6"
-  }
+  "homepage": "https://github.com/angelasubi/vue2-checklist#readme"
 }
