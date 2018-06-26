@@ -1,8 +1,8 @@
 <template>
   <div class="vue2-checklist">
-    <div class="content">
+    <div class="content" v-show="getShow">
       <div class="topbar">
-        <span class="cancel" @click="cancelList">取消</span>
+        <span class="cancel" @click="handleCancel">取消</span>
         <span class="address">选择地址</span>
         <span class="success" @click="handleSuccess">完成</span>
       </div>
@@ -22,7 +22,7 @@
         </div>
       </div>
     </div>
-    <div class="mask" v-if="isShowMask" @click="handleMask"></div>
+    <div class="mask" v-show="getShow" @click="handleMask"></div>
   </div>
 </template>
 
@@ -30,34 +30,52 @@
 export default {
   name: 'vue2-checklist',
   props: {
-    showMask: {
-      type: Boolean,
-      default: false
-    },
+    // showMask: {
+    //   type: Boolean,
+    //   default: false
+    // },
     listData: {
       type: Array,
       default: []
+    },
+    isVisible: {
+      type: Boolean,
+      default: false
     }
   },
   data() {
     return {
-      resData: [],
-      isShowMask: false,
-      lineData: []
+      resData: []
+      // lineData: []
     }
   },
 
   computed: {
     addressLen () {
       return this.lineData.filter(v => v.classShow).length
+    },
+    getShow: {
+      get() {
+        return this.isVisible
+      },
+      set(newState) {
+        return this.isVisible = newState
+      }
+    },
+    lineData() {
+      return this.listData
+    }
+  },
+
+  watch: {
+    test(v) {
+      console.log(v, 'vvv')
     }
   },
 
   methods: {
     changeClass(item, $event) {
-      if ($event.target.className == 'check-disabled') {
-        return false
-      }
+      if ($event.target.className == 'check-disabled') { return false }
       item.classShow = !item.classShow
     },
     classState(state) {
@@ -78,8 +96,8 @@ export default {
         return 'dis-rad'
       }
     },
-    cancelList() {
-      this.$emit('cancel-state', true)
+    handleCancel() {
+      this.$emit('on-cancel', true)
     },
     handleSuccess() {
       this.resData = []
@@ -91,16 +109,22 @@ export default {
       this.$emit('on-change', this.resData)
     },
     handleMask() {
-      this.$emit('check-state', false)
-      this.isShowMask = false
+      this.getShow = false
+      // this.isShowMask = false
+      // this.getShow = false
+      // console.log(this.getShow)
+      // this.getShow = false
+      // console.log(this.getShow)
+      // this.$emit('close-mask', false)
+      // this.isShowMask = false
     }
   },
 
   created() {
-    if (this.showMask) {
-      this.isShowMask = true
-    }
-    this.lineData = this.listData
+    // if (this.showMask) {
+      // this.isShowMask = true
+    // }
+    // this.lineData = this.listData
   }
 }
 </script>

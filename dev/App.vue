@@ -3,12 +3,11 @@
     <input class="check-input" type="text" placeholder="请选择地址" @click="getAddress">
     <p v-for="item in content" :key="item.id">{{ item.address }}</p>
     <vue-check-list
-      v-if="isShow"
+      :isVisible="isShow"
       :listData="lineData"
-      @cancel-state="getCancelState"
-      @on-change="getlistData"
-      @check-state="getCheckState"
-      :showMask="mask">
+      @on-cancel="hanldeCancel"
+      @on-change="handleChange"
+      >
     </vue-check-list>
   </div>
 </template>
@@ -21,11 +20,13 @@ export default {
   components: {
     VueCheckList
   },
+  props: {
+// @close-mask="handleCloseMask"
+  },
   data() {
     return {
-      isShow: false,
       content: [],
-      mask: false,
+      isShow: false,
       lineData: [
         {id: 1, address: '厦门软件园二期', classShow: false},
         {id: 2, address: '厦门软件园三期', classShow: false},
@@ -38,32 +39,36 @@ export default {
       ],
     }
   },
+
   methods: {
     getAddress() {
       document.activeElement.blur()
       this.isShow = true
-      this.mask = true
+      // this.mask = true
     },
     handleMask() {
       this.isShow = false
     },
-    getCancelState(v) {
-      if (v) {
-        this.isShow = false
-      }
+    hanldeCancel(v) {
+      if (v) { this.isShow = false }
     },
-    getlistData(v) {
+    handleChange(v) {
       this.content = []
       for (let i = 0; i < v.length; i++) {
         this.content.push(v[i])
       }
       this.isShow = false
     },
-    getCheckState(v) {
+    handleCloseMask(v) {
+      console.log(v)
       if(!v) {
-        this.isShow = false
+        // this.isShow = false
       }
     }
+  },
+
+  mounted() {
+
   }
 }
 </script>
