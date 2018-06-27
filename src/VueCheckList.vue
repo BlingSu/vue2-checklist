@@ -12,7 +12,7 @@
       <div class="list">
         <div class="line"
           v-for="item in lineData"
-          :key="item.id">
+          :key="item.address">
           <div class="p">
             <div class="cont">{{ item.address }}</div>
             <div :class="classState(item.classShow)"
@@ -30,11 +30,11 @@
 export default {
   name: 'vue2-checklist',
   props: {
-    listData: {
+    data: {
       type: Array,
       default: []
     },
-    isVisible: {
+    visible: {
       type: Boolean,
       default: false
     },
@@ -53,8 +53,13 @@ export default {
     addressLen () {
       return this.lineData.filter(v => v.classShow).length
     },
-    getShow() { return this.isVisible },
-    lineData() { return this.listData }
+    getShow() { return this.visible },
+    lineData() {
+      for (let i = 0; i < this.data.length; i++) {
+        this.$set(this.data[i], 'classShow', false)
+      }
+      return this.data
+    }
   },
 
   methods: {

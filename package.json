@@ -1,6 +1,6 @@
 {
   "name": "vue2-checklist",
-  "version": "1.2.7",
+  "version": "1.2.8",
   "description": "checklist using vue2.0",
   "keywords": [
     "vue2-checklist",
@@ -17,7 +17,8 @@
   ],
   "scripts": {
     "dev": "poi dev/index.js",
-    "build": "poi build ./src/index.js --library Vue2CheckList"
+    "build": "poi build ./src/index.js --library Vue2CheckList",
+    "test": "poi test/index.js"
   },
   "devDependencies": {
     "node-sass": "^4.7.2",
