@@ -29,11 +29,11 @@ Vue.use(Vue2Checklist)
 |maxlength |Number |2 |same as maxlength in native select |
 
 
-## Methods
-|Method Name|Description|Parameters|
-|:----- |:------|:------|:------|
-|on-cancel |hook function when dialog cancel |dialog state |
-|on-change |triggers when the selected value changes |current selected value |
+## Methods  
+|Method Name|Description|Parameters|  
+|:----- |:------|:------|:------|  
+|on-cancel |hook function when dialog cancel |dialog state |  
+|on-change |triggers when the selected value changes |current selected value |  
 
 ## Example
 
