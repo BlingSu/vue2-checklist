@@ -30,10 +30,10 @@ Vue.use(Vue2Checklist)
 
 
 ## Methods  
-|Method Name|Description|Parameters|  
-|:----- |:------|:------|:------|  
-|on-cancel |hook function when dialog cancel |dialog state |  
-|on-change |triggers when the selected value changes |current selected value |  
+|Method Name|Description|Parameters|
+|:----- |:------|:------|
+|on-cancel |hook function when dialog cancel |dialog state |
+|on-change |triggers when the selected value changes |current selected value |
 
 ## Example
 
