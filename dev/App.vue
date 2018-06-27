@@ -5,6 +5,7 @@
     <vue-check-list
       :isVisible="isShow"
       :listData="lineData"
+      :maxlength="maxlength"
       @on-cancel="hanldeCancel"
       @on-change="handleChange">
     </vue-check-list>
@@ -35,6 +36,7 @@ export default {
         {id: 7, address: '厦门软件园八期', classShow: false},
         {id: 8, address: '厦门软件园九期', classShow: false}
       ],
+      maxlength: 5
     }
   },
 
@@ -44,9 +46,9 @@ export default {
       this.isShow = true
     },
     hanldeCancel(scope) { if (scope) { this.isShow = false } },
-    handleChange(v) {
+    handleChange(scope) {
       this.content = []
-      for (let i = 0; i < v.length; i++) {
+      for (let i = 0; i < scope.length; i++) {
         this.content.push(v[i])
       }
       this.isShow = false

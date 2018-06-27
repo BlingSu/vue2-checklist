@@ -7,7 +7,7 @@
         <span class="success" @click="handleSuccess">完成</span>
       </div>
       <div class="desc">
-        已经选择{{ addressLen }}个地址，最多可选2个
+        已经选择{{ addressLen }}个地址，最多可选{{ maxlength }}个
       </div>
       <div class="list">
         <div class="line"
@@ -37,6 +37,10 @@ export default {
     isVisible: {
       type: Boolean,
       default: false
+    },
+    maxlength: {
+      type: Number,
+      default: 2
     }
   },
   data() {
@@ -60,12 +64,12 @@ export default {
     },
     classState(state) {
       if (state) {
-        if (this.addressLen == 2) {
+        if (this.addressLen == this.maxlength) {
           let dom = document.querySelectorAll('.dis-rad')
           for (let i = 0; i < dom.length; i++) {
             dom[i].setAttribute('class', 'check-disabled')
           }
-        } else if (this.addressLen < 3) {
+        } else if (this.addressLen < this.maxlength + 1) {
           let dom = document.querySelectorAll('.check-disabled')
           for (let i = 0; i < dom.length; i++) {
             dom[i].setAttribute('class', 'dis-rad')
@@ -90,7 +94,6 @@ export default {
   },
 
   created() {
-    // this.lineData = this.listData
   }
 }
 </script>
