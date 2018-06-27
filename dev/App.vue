@@ -1,13 +1,12 @@
 <template>
   <div id="app">
-    <input class="check-input" type="text" placeholder="请选择地址" @click="getAddress">
+    <input class="check-input" type="text" placeholder="请选择地址" @click="selectAddress">
     <p v-for="item in content" :key="item.id">{{ item.address }}</p>
     <vue-check-list
       :isVisible="isShow"
       :listData="lineData"
       @on-cancel="hanldeCancel"
-      @on-change="handleChange"
-      >
+      @on-change="handleChange">
     </vue-check-list>
   </div>
 </template>
@@ -21,7 +20,6 @@ export default {
     VueCheckList
   },
   props: {
-// @close-mask="handleCloseMask"
   },
   data() {
     return {
@@ -41,29 +39,17 @@ export default {
   },
 
   methods: {
-    getAddress() {
+    selectAddress() {
       document.activeElement.blur()
       this.isShow = true
-      // this.mask = true
     },
-    handleMask() {
-      this.isShow = false
-    },
-    hanldeCancel(v) {
-      if (v) { this.isShow = false }
-    },
+    hanldeCancel(scope) { if (scope) { this.isShow = false } },
     handleChange(v) {
       this.content = []
       for (let i = 0; i < v.length; i++) {
         this.content.push(v[i])
       }
       this.isShow = false
-    },
-    handleCloseMask(v) {
-      console.log(v)
-      if(!v) {
-        // this.isShow = false
-      }
     }
   },
 

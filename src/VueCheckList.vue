@@ -30,10 +30,6 @@
 export default {
   name: 'vue2-checklist',
   props: {
-    // showMask: {
-    //   type: Boolean,
-    //   default: false
-    // },
     listData: {
       type: Array,
       default: []
@@ -46,7 +42,6 @@ export default {
   data() {
     return {
       resData: []
-      // lineData: []
     }
   },
 
@@ -54,23 +49,8 @@ export default {
     addressLen () {
       return this.lineData.filter(v => v.classShow).length
     },
-    getShow: {
-      get() {
-        return this.isVisible
-      },
-      set(newState) {
-        return this.isVisible = newState
-      }
-    },
-    lineData() {
-      return this.listData
-    }
-  },
-
-  watch: {
-    test(v) {
-      console.log(v, 'vvv')
-    }
+    getShow() { return this.isVisible },
+    lineData() { return this.listData }
   },
 
   methods: {
@@ -96,9 +76,7 @@ export default {
         return 'dis-rad'
       }
     },
-    handleCancel() {
-      this.$emit('on-cancel', true)
-    },
+    handleCancel() { this.$emit('on-cancel', true) },
     handleSuccess() {
       this.resData = []
       this.lineData.forEach(v => {
@@ -108,22 +86,10 @@ export default {
       })
       this.$emit('on-change', this.resData)
     },
-    handleMask() {
-      this.getShow = false
-      // this.isShowMask = false
-      // this.getShow = false
-      // console.log(this.getShow)
-      // this.getShow = false
-      // console.log(this.getShow)
-      // this.$emit('close-mask', false)
-      // this.isShowMask = false
-    }
+    handleMask() { this.handleCancel() }
   },
 
   created() {
-    // if (this.showMask) {
-      // this.isShowMask = true
-    // }
     // this.lineData = this.listData
   }
 }
