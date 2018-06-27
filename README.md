@@ -1,4 +1,4 @@
-# 基于 Vue2.0 的CheckList组件
+# Using Vue2.0 CheckList component
 
 ## Install
 
