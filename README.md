@@ -28,6 +28,7 @@ Vue.use(Vue2Checklist)
 |data |Array |- |Table data |
 |maxlength |Number |2 |same as maxlength in native select |
 
+
 ## Methods
 |Method Name|Description|Parameters|
 |:----- |:------|:------|:------|
